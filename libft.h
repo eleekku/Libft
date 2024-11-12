@@ -6,7 +6,7 @@
 /*   By: esalmela <esalmela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 14:57:15 by esalmela          #+#    #+#             */
-/*   Updated: 2023/11/11 12:36:44 by esalmela         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:24:06 by esalmela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdint.h>
 
-typedef struct s_list
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+typedef struct s_stack
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	int				value;
+	int				index;
+	int				seque;
+	struct s_stack	*next;
+}	t_stack;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -56,13 +64,32 @@ char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void*));
-void	ft_lstdelone(t_list *lst, void (*del)(void*));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-t_list	*ft_lstnew(void *content);
-int		ft_lstsize(t_list *lst);
+void	ft_lstadd_back(t_stack **lst, t_stack *new);
+void	ft_lstadd_front(t_stack **lst, t_stack *new);
+void	ft_lstclear(t_stack *lst);
+void	ft_lstdelone(t_stack *lst, void (*del)(int*));
+void	ft_lstiter(t_stack *lst, void (*f)(int *));
+t_stack	*ft_lstlast(t_stack *lst);
+t_stack	*ft_lstnew(int content, int index);
+int		ft_lstsize(t_stack *lst);
+char	*get_next_line(int fd);
+char	*ft_strjoingnl(char *s1, char *s2);
+char	*ft_save(char *save);
+char	*give_line(char *save);
+void	set_them_free(char *a, char *b);
+int		ft_printf(int fd, const char *format, ...);
+int		checkconvers(const char *format, va_list args, int *p, int fd);
+int		putints(int n, int *p, int fd);
+int		ft_putstr(char *res, int *p, int fd);
+int		printchar(int a, int *p, int fd);
+void	ft_put_hex(unsigned int num, const char format, int *p, int fd);
+int		ft_hex_len(unsigned int num);
+int		ft_print_hex(unsigned int num, const char format, int *p, int fd);
+int		ft_putnbr(int n, int *p, int fd);
+int		ft_putnbru(unsigned int n, int *p, int fd);
+int		putuints(unsigned int n, int *p, int fd);
+void	ft_put_ptr(uintptr_t num, int *p, int fd);
+int		ft_ptr_len(uintptr_t num);
+int		ft_print_void(unsigned long long ptr, int *p, int fd);
+float	ft_atof(const char *str);
 #endif

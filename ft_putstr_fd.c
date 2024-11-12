@@ -6,19 +6,15 @@
 /*   By: esalmela <esalmela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 13:38:45 by esalmela          #+#    #+#             */
-/*   Updated: 2023/11/06 17:20:45 by esalmela         ###   ########.fr       */
+/*   Updated: 2024/04/03 10:52:25 by esalmela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
+	len = ft_strlen(s);
+	write(fd, s, len);
 }

@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_stack	*ft_lstnew(int content, int index)
 {
-	t_list	*link;
+	t_stack	*link;
 
-	link = (t_list *)malloc(sizeof(t_list));
+	link = (t_stack *)malloc(sizeof(t_stack));
 	if (!link)
 		return (NULL);
-	link->content = (void *)content;
+	link->value = content;
+	link->index = index;
+	link->seque = 0;
 	link->next = NULL;
 	return (link);
 }

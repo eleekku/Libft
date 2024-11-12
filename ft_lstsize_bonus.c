@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_stack *lst)
 {
-	t_list	*current;
+	t_stack	*current;
 	int		i;
 
 	if (lst == NULL)
